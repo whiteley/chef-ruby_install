@@ -56,4 +56,6 @@ end
 
 # Make sure ruby-install has correct ownership, Debian doesn't seem to use
 # group 'root' when it is installed unlike all the others including Ubuntu.
-execute 'chown root:root /usr/local/bin/ruby-install'
+execute "chown root:root #{node['ruby_install']['bin']}" do
+  only_if { File.stat(node['ruby_install']['bin']).uid != 0 }
+end

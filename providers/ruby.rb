@@ -59,7 +59,7 @@ end
 
 def execute_ruby_install(rubie, prefix_path)
   execute "ruby-install[#{rubie}]" do
-    command   %( /usr/local/bin/ruby-install --rubies-dir "#{prefix_path}" "#{rubie}" )
+    command   %( #{node['ruby_install']['bin']} --rubies-dir "#{prefix_path}" "#{rubie}" )
     user        new_resource.user         if new_resource.user
     group       new_resource.group        if new_resource.group
     environment new_resource.environment  if new_resource.environment
